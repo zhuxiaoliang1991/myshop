@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 CART_SESSION_ID = 'cart'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT=25
+EMAIL_HOST_USER = '634509103@qq.com'
+EMAIL_HOST_PASSWORD=''
+EMAIL_USER_TLS = True
