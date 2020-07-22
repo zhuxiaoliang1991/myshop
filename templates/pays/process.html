@@ -1,0 +1,64 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    付款
+{% endblock %}
+
+{% block content %}
+    <h1>付款</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>图片</th>
+                <th>商品</th>
+                <th>数量</th>
+                <th>单价</th>
+                <th>价格</th>
+                <th>删除</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in order.items.all %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static
+                             'img/no_image.png'%}{% endif %}" alt="">
+                        </a>
+                    </td>
+                    <td>
+                        {{ product.name }}
+                    </td>
+                    <td class="quantity">
+                       {{ item.quantity }}
+                    </td>
+                    <td class="price">￥{{ product.price }}</td>
+                    <td class="total">￥{{ item.get_cost }}</td>
+                    <td><a href="{% url 'orders:order_remove'  product.id  %}">删除</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+            <tr class="total">
+                <td>总计</td>
+                <td colspan="4"></td>
+                <td class="num">￥{{ total_cost }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <form action="{% url 'pay:payment' %}" method="post">
+         {% csrf_token %}
+            <input type="hidden" name="total_cost" value="{{ total_cost }}">
+            <select name="payway" class="button">
+                <option value="phone">手机支付</option>
+                <option value="pc">电脑支付</option>
+                <option value="face">扫码支付</option>
+            </select>
+            <button class="button">确认支付
+        </form>
+{#        <a href="{% url 'pay:payment' %}" class="button light">确认支付</a>#}
+        <a href="{% url 'pay:canceled' %}" class="button">取消支付</a>
+    </p>
+{% endblock %}

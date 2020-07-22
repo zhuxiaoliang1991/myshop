@@ -1,0 +1,109 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}
+    您的购物车
+{% endblock %}
+
+{% block content %}
+    <h1>您的购物车</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>图片</th>
+                <th>商品</th>
+                <th>数量</th>
+                <th>删除</th>
+                <th class="num">单价</th>
+                <th class="num">小计</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static
+'img/no_image.png'%}{% endif %}" alt="">
+                        </a>
+                    </td>
+                    <td>
+                        {{ product.name }}
+                    </td>
+                    <td>
+                       <!--{{ item.quantity }} -->
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <input type="submit" value="更新">
+                            {% csrf_token %}
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{% url 'cart:cart_remove' product.id %}">删除</a>
+                    </td>
+                    <td class="num">￥{{ item.price }}</td>
+                    <td class="num">￥{{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+            {% if cart.coupon %}
+                <tr class="subtotal">
+                    <td>总计</td>
+                    <td colspan="4"></td>
+                    <td class="num">￥{{ cart.get_total_price}}</td>
+                </tr>
+                <tr>
+                    <td>"{{ cart.coupon.code }}"优惠券({{ cart.coupon.discount }}%折扣)</td>
+                    <td colspan="4"></td>
+                    <td class="num neg"> - ￥{{ cart.decrease|floatformat:'2' }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5"></td>
+                    <td style="text-align:right;">
+                         <a href="{% url 'coupons:canceled' %}" class="button" >不使用</a>
+                    </td>
+                </tr>
+
+
+            {% endif %}
+
+                <tr class="total">
+                    <td>应付</td>
+                    <td colspan="4"></td>
+                    <td class="num">￥{{ cart.get_total_price_after_discount|floatformat:'2' }}</td>
+                </tr>
+        <!--
+            <tr class="total">
+                <td>总计</td>
+                <td colspan="4"></td>
+                <td class="num">￥{{ cart.get_total_price }}</td>
+            </tr>
+            -->
+        </tbody>
+    </table>
+    {% if recommended_products %}
+        <div class="recommendations cart">
+            <h3>购买此商品的人还买了：</h3>
+            {% for p in recommended_products %}
+                <div class="item">
+                    <a href="{{ p.get_absolute_url }}">
+                        <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                    </a>
+                    <p><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <p>使用优惠券</p>
+    <form action="{% url 'coupons:apply' %}" method="post">
+        {{ coupon_apply_form.as_p }}
+        <input type="submit" value="使用">
+        {% csrf_token %}
+    </form>
+    <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button light">继续购物</a>
+        <a href="{% url 'orders:order_create' %}" class="button">结账</a>
+    </p>
+{% endblock %}
