@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from orders.task import order_created
 from .forms import OrderCreateForm
@@ -19,7 +20,11 @@ def order_create(request):
                 cart.clear()
                 #启动异步任务
                 order_created(order.id)
-                return render(request,'orders/order/created.html',{'order':order})
+                #在session中加入订单id
+                request.session['order_id'] = order.id
+                #重定向到支付支付页面
+                return redirect(reverse('paymant:process'))
     else:
         form = OrderCreateForm()
         return render(request,'orders/order/create.html',{'cart':cart,'form':form})
+

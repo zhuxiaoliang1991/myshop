@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
+    'payment.apps.PaymentConfig',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +136,8 @@ EMAIL_PORT=25
 EMAIL_HOST_USER = '634509103@qq.com'
 EMAIL_HOST_PASSWORD=''
 EMAIL_USER_TLS = True
+
+
+APP_ID = '201610240075112'
+APP_PRIVATE_KEY = open(os.path.join(BASE_DIR,'payment/app_private_key.pem')).read()
+APP_PUBLIC_KEY = open(os.path.join(BASE_DIR,'payment/app_public_key.pem')).read()

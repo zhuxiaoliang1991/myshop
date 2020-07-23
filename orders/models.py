@@ -12,6 +12,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True,verbose_name='创建时间')
     updated = models.DateTimeField(auto_now=True,verbose_name='更新时间')
     paid = models.BooleanField(default=False,verbose_name='是否支付')
+    braintree_id = models.CharField(max_length=150,blank=True)
 
     class Meta:
         verbose_name = '订单用户信息'
