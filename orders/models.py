@@ -36,7 +36,7 @@ class OrderItem(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.id
+        return '{}'.format(self.id)
 
     def get_cost(self):
         return self.price * self.quantity

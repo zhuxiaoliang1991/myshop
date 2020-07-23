@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from alipay import AliPay
 from django.conf import settings
 from orders.models import Order
+from .task import send_order_mail
 
 
 # Create your views here.
@@ -36,6 +37,7 @@ def payment_process(request):
         order.braintree_id = braintree_id
         order.paid = True
         order.save()
+        send_order_mail(order)
         return redirect("https://openapi.alipaydev.com/gateway.do?" + order_string)
 
 
@@ -45,3 +47,4 @@ def payment_done(request):
 
 def payment_canceled(request):
     return render(request,'payment/canceled.html')
+
