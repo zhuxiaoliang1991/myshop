@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-24 16:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: orders/models.py:10
+msgid "姓"
+msgstr "Apellido"
+
+#: orders/models.py:11
+msgid "名"
+msgstr "Nombre"
+
+#: orders/models.py:12
+msgid "邮箱"
+msgstr "Buzón"
+
+#: orders/models.py:13
+msgid "收货地址"
+msgstr "Dirección de recepción"
+
+#: orders/models.py:14
+msgid "邮编"
+msgstr "Franqueo"
+
+#: orders/models.py:15
+msgid "城市"
+msgstr "Ciudad"
+
+#: orders/models.py:16
+msgid "创建时间"
+msgstr "Tiempo de creación"
+
+#: orders/models.py:17
+msgid "更新时间"
+msgstr "Tiempo de actualización"
+
+#: orders/models.py:18
+msgid "是否支付"
+msgstr "Si pagar"
+
+#: orders/models.py:19
+msgid "交易编号"
+msgstr "Número de transacción"
+
+#: orders/models.py:20
+msgid "优惠券"
+msgstr "Cupón"
+
+#: orders/models.py:21
+msgid "折扣"
+msgstr "Descuento"
+
+#: orders/models.py:25
+msgid "订单用户信息"
+msgstr "Información del usuario"
+
+#: orders/models.py:37
+msgid "购买者"
+msgstr "Comprador"
+
+#: orders/models.py:38
+msgid "订单商品"
+msgstr "Productos pedidos"
+
+#: orders/models.py:39
+msgid "商品价格"
+msgstr "Precio de compra"
+
+#: orders/models.py:40
+msgid "商品数量"
+msgstr "Cantidad de productos"
+
+#: orders/models.py:43
+msgid "订单详情"
+msgstr "Detalles del pedido"
+
+#: orders/urls.py:8
+msgid "create/"
+msgstr ""

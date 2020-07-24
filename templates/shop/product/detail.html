@@ -19,7 +19,7 @@
             <input type="submit" value="{% trans '加入购物车' %}">
         </form>
         {{ product.description|linebreaks }}
-        <!--{% if recommended_products %}
+        {% if recommended_products %}
             <div class="recommendations">
                 <h3>购买此商品的人也购买了：</h3>
                 {% if p in recommended_products %}
@@ -31,6 +31,6 @@
                     </div>
                  {% endif %}
             </div>
-        {% endif %}-->
+        {% endif %}
     </div>
 {% endblock %}

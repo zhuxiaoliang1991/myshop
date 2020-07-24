@@ -42,11 +42,14 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
     'payment.apps.PaymentConfig',
+    'coupons.apps.CouponsConfig',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -115,7 +118,7 @@ TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -141,3 +144,19 @@ EMAIL_USER_TLS = True
 APP_ID = '201610240075112'
 APP_PRIVATE_KEY = open(os.path.join(BASE_DIR,'payment/app_private_key.pem')).read()
 APP_PUBLIC_KEY = open(os.path.join(BASE_DIR,'payment/app_public_key.pem')).read()
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = (
+    ('en',_('English')),
+    ('es',_('Spanish')),
+)
+LANGUAGE_CODE = 'en'
+
+LOCALE_PATH = (
+    os.path.join(BASE_DIR,'locale/')
+)
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 1

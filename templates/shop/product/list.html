@@ -1,4 +1,5 @@
 {% extends 'shop/base.html' %}
+{% load i18n %}
 {% load static %}
 {% load thumbnail %}
 {% block title %}
@@ -10,10 +11,10 @@
 {% endblock %}
 {% block content %}
     <div id="sidebar">
-        <h3>商品种类</h3>
+        <h3>{% trans '商品种类' %}</h3>
         <ul>
             <li {% if not category %} class="selected" {% endif %}>
-                <a href="{% url 'shop:product_list' %}">所有</a>
+                <a href="{% url 'shop:product_list' %}">{% trans '所有' %}</a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == c.slug %} class="selected"{% endif %}>

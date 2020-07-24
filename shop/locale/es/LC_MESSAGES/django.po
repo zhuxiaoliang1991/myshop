@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-24 16:14+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: shop/models.py:10
+msgid "类别名称"
+msgstr "Nombre de categoría"
+
+#: shop/models.py:11
+msgid "分类简称"
+msgstr "Siglas de clasificación"
+
+#: shop/models.py:15 shop/models.py:31
+msgid "商品分类"
+msgstr "Clasificación de mercancías"
+
+#: shop/models.py:32
+msgid "商品名称"
+msgstr "Nombre comercial"
+
+#: shop/models.py:33
+msgid "商品简称"
+msgstr "Productos Básicos"
+
+#: shop/models.py:34
+msgid "商品图片"
+msgstr "Productos Básicos"
+
+#: shop/models.py:35
+msgid "商品描述"
+msgstr "Descripción del producto"
+
+#: shop/models.py:36
+msgid "价格"
+msgstr "Precio"
+
+#: shop/models.py:37
+msgid "可以购买"
+msgstr "Se puede comprar"
+
+#: shop/models.py:38
+msgid "创建时间"
+msgstr "Tiempo de creación"
+
+#: shop/models.py:39
+msgid "最近更新时间"
+msgstr "Actualización reciente"
+
+#: shop/models.py:43
+msgid "商品"
+msgstr "Productos"

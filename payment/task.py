@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 from worker import call_by_worker
 from django.core.mail import send_mail, EmailMessage
-from .models import Order
+
 
 
 @call_by_worker

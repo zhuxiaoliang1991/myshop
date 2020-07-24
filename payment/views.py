@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from alipay import AliPay
 from django.conf import settings
 from orders.models import Order
+from shop.recommender import Recommender
 from .task import send_order_mail
 
 
@@ -37,6 +38,11 @@ def payment_process(request):
         order.braintree_id = braintree_id
         order.paid = True
         order.save()
+        #更新redis中本次购买的商品分数
+        r = Recommender()
+        order_items = [order_item.product for order_item in order.items.all()]
+        r.products_bought(order_items)
+
         send_order_mail(order)
         return redirect("https://openapi.alipaydev.com/gateway.do?" + order_string)
 
