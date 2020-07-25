@@ -3,7 +3,7 @@ from django.conf import settings
 from .models import Product
 
 #连接到Redis
-r = redis.Redis(host=settings.REDIS_HOST,port=settings.REDIS_PORT,db=settings)
+r = redis.Redis(host=settings.REDIS_HOST,port=settings.REDIS_PORT,db=settings.REDIS_DB)
 
 class Recommender:
 
@@ -22,7 +22,7 @@ class Recommender:
         product_ids = [p.id for p in products]
         #如果当前列表只有一个商品
         if len(product_ids):
-            suggestions = r.zrevrange(self.get_product_key(product_ids[0]),0,-1)[:max_results]
+            suggestions = r.zrange(self.get_product_key(product_ids[0]),0,-1,desc=True)[:max_results]
         else:
             #生成一个临时键key，用于存储临时的有序集合
             flat_ids = ''.join([str(id) for id in product_ids])
@@ -34,7 +34,7 @@ class Recommender:
             #删除与当前列表内商品相同的键
             r.zrem(tmp_key,*product_ids)
             #获得排名结果
-            suggestions = r.zrevrange(tmp_key,0,-1)[:max_results]
+            suggestions = r.zrange(tmp_key,0,-1,desc=True)[:max_results]
             #删除临时键
             r.delete(tmp_key)
         #获取关联商品并通过相关性排序
